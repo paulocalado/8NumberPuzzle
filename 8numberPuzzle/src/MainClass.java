@@ -3,9 +3,9 @@ public class MainClass {
 	
 	public static void main (String args[]) {
 		
-		int[] puzzle = {6,1,2,3,4,5,0,7,8};
+		int[] puzzle = {4,1,2,3,0,5,6,7,8};
 		
-		System.out.println(PuzzleControl.searchForZero(puzzle));
+		PuzzleControl.searchForZero(puzzle);
 	}
 
 }
