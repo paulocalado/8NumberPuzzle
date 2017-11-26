@@ -70,14 +70,44 @@ public class PuzzleControl {
 		for(int i=0; i< directionsArray.length; i++) {
 			
 			if(directionsArray[i]) {
-				if(i==0) {
+				switch(i) {
+				case 0: 
 					int[] childrenOneArray = Arrays.copyOf(puzzle, puzzle.length);
 					childrenOneArray[zeroPosition]=childrenOneArray[zeroPosition-3];
 					childrenOneArray[zeroPosition-3] = 0;
 					
-					System.out.println("Array Children: "+Arrays.toString(childrenOneArray));
+					System.out.println("Array Children One: "+Arrays.toString(childrenOneArray));
 					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					break;
+				case 1:
+					int[] childrenTwoArray = Arrays.copyOf(puzzle, puzzle.length);
+					childrenTwoArray[zeroPosition] = childrenTwoArray[zeroPosition+3];
+					childrenTwoArray[zeroPosition+3] = 0;
+				
+					System.out.println("Array Children Two: "+Arrays.toString(childrenTwoArray));
+					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					break;
+				case 2:
+					int[] childrenThreeArray = Arrays.copyOf(puzzle, puzzle.length);
+					childrenThreeArray[zeroPosition] = childrenThreeArray[zeroPosition-1];
+					childrenThreeArray[zeroPosition-1]=0;
+					
+					System.out.println("Array Children Three: "+Arrays.toString(childrenThreeArray));
+					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					break;
+					
+				case 3:
+					int[]childrenFourArray = Arrays.copyOf(puzzle, puzzle.length);
+					childrenFourArray[zeroPosition] = childrenFourArray[zeroPosition+1];
+					childrenFourArray[zeroPosition+1]=0;
+					
+					System.out.println("Array Children Four: "+Arrays.toString(childrenFourArray));
+					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					break;
 				}
+					
+				
+				
 				
 			}
 		}
