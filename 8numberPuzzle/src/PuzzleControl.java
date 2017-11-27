@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PuzzleControl {
 	
@@ -16,7 +19,6 @@ public class PuzzleControl {
 			}
 		}
 		
-
 		switch(zeroPosition) {
 		case 0: 
 			directionsArray[0] = false; directionsArray[1] = true;
@@ -67,6 +69,7 @@ public class PuzzleControl {
 	
 	public static void createChildren(boolean[] directionsArray, int[] puzzle, int zeroPosition) {
 		
+		ArrayList<int[]> childrensArray = new ArrayList<>();
 		for(int i=0; i< directionsArray.length; i++) {
 			
 			if(directionsArray[i]) {
@@ -76,6 +79,7 @@ public class PuzzleControl {
 					childrenOneArray[zeroPosition]=childrenOneArray[zeroPosition-3];
 					childrenOneArray[zeroPosition-3] = 0;
 					
+					childrensArray.add(childrenOneArray);
 					System.out.println("Array Children One: "+Arrays.toString(childrenOneArray));
 					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
 					break;
@@ -83,7 +87,8 @@ public class PuzzleControl {
 					int[] childrenTwoArray = Arrays.copyOf(puzzle, puzzle.length);
 					childrenTwoArray[zeroPosition] = childrenTwoArray[zeroPosition+3];
 					childrenTwoArray[zeroPosition+3] = 0;
-				
+					
+					childrensArray.add(childrenTwoArray);
 					System.out.println("Array Children Two: "+Arrays.toString(childrenTwoArray));
 					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
 					break;
@@ -92,6 +97,7 @@ public class PuzzleControl {
 					childrenThreeArray[zeroPosition] = childrenThreeArray[zeroPosition-1];
 					childrenThreeArray[zeroPosition-1]=0;
 					
+					childrensArray.add(childrenThreeArray);
 					System.out.println("Array Children Three: "+Arrays.toString(childrenThreeArray));
 					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
 					break;
@@ -101,15 +107,15 @@ public class PuzzleControl {
 					childrenFourArray[zeroPosition] = childrenFourArray[zeroPosition+1];
 					childrenFourArray[zeroPosition+1]=0;
 					
+					childrensArray.add(childrenFourArray);
 					System.out.println("Array Children Four: "+Arrays.toString(childrenFourArray));
 					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
 					break;
 				}
-					
-				
-				
 				
 			}
+			
+			PuzzleChecker.checkChildrens(childrensArray);
 		}
 	}
 }
