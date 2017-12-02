@@ -8,13 +8,16 @@ public class PuzzleControl {
 	
 
 
-	public static int searchForZero(int[] puzzle) {
+	public static int searchForZero(ArrayList<int[]> puzzle) {
 		int zeroPosition = 0;
+		boolean checkChildren = false;
+		ArrayList<int[]> childrensArray = new ArrayList<>();
 		boolean[] directionsArray = {false, false, false, false};
 		/*up, down, left, right*/
 		
-		for(int i=0; i<puzzle.length;i++) {
-			if(puzzle[i]==0) {
+		for(int[] node : puzzle) {
+		for(int i=0; i<node.length;i++) {
+			if(node[i]==0) {
 				zeroPosition = i;
 			}
 		}
@@ -62,12 +65,20 @@ public class PuzzleControl {
 			break;
 		}
 		
-		createChildren(directionsArray, puzzle, zeroPosition);
+		childrensArray.addAll(createChildren(directionsArray, node, zeroPosition));
+		
+	}
+		if(!PuzzleChecker.checkChildrens(childrensArray)) {
+			searchForZero(childrensArray);
+			
+		}else {
+			System.out.println("CABOUUUUUUUUUU");
+			System.exit(0);}
 		
 		return zeroPosition;
 	}
 	
-	public static void createChildren(boolean[] directionsArray, int[] puzzle, int zeroPosition) {
+	public static ArrayList<int[]> createChildren(boolean[] directionsArray, int[] puzzle, int zeroPosition) {
 		
 		ArrayList<int[]> childrensArray = new ArrayList<>();
 		for(int i=0; i< directionsArray.length; i++) {
@@ -115,7 +126,9 @@ public class PuzzleControl {
 				
 			}
 			
-			PuzzleChecker.checkChildrens(childrensArray);
+			//PuzzleChecker.checkChildrens(childrensArray);
 		}
+		
+		return childrensArray;
 	}
 }
