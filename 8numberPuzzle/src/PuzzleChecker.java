@@ -7,7 +7,7 @@ public class PuzzleChecker {
 	public static HashMap<String, int[]> visitedNodes = new HashMap<>();
 	public static int[] arrayAnswer = {0,1,2,3,4,5,6,7,8};
 	
-	public static boolean checkChildrens(ArrayList<int[]> childrensList) {
+	public static  HashMap<String, int[]> checkChildrens(ArrayList<int[]> childrensList) {
 		
 		for(int[] children : childrensList) {
 			
@@ -16,7 +16,7 @@ public class PuzzleChecker {
 				System.out.println("Resposta encontrada! FIM");
 				
 				System.exit(0);
-				return true;
+				
 			}else if(visitedNodes.containsValue(children)) {
 				System.out.println("nó já visitado");
 			}else {
@@ -26,7 +26,7 @@ public class PuzzleChecker {
 			}
 		}
 		
-		return false;
+		return visitedNodes;
 		
 	}
 }

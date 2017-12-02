@@ -6,11 +6,11 @@ import java.util.Map;
 public class PuzzleControl {
 	
 	
-
+	public static HashMap<String, int[]> visitedNodes = new HashMap<>();
 
 	public static int searchForZero(ArrayList<int[]> puzzle) {
 		int zeroPosition = 0;
-		boolean checkChildren = false;
+		//boolean checkChildren = false;
 		ArrayList<int[]> childrensArray = new ArrayList<>();
 		boolean[] directionsArray = {false, false, false, false};
 		/*up, down, left, right*/
@@ -68,15 +68,12 @@ public class PuzzleControl {
 		childrensArray.addAll(createChildren(directionsArray, node, zeroPosition));
 		
 	}
-		if(!PuzzleChecker.checkChildrens(childrensArray)) {
+			visitedNodes = PuzzleChecker.checkChildrens(childrensArray);
 			searchForZero(childrensArray);
-			
-		}else {
-			System.out.println("CABOUUUUUUUUUU");
-			System.exit(0);}
 		
 		return zeroPosition;
 	}
+
 	
 	public static ArrayList<int[]> createChildren(boolean[] directionsArray, int[] puzzle, int zeroPosition) {
 		
@@ -90,27 +87,46 @@ public class PuzzleControl {
 					childrenOneArray[zeroPosition]=childrenOneArray[zeroPosition-3];
 					childrenOneArray[zeroPosition-3] = 0;
 					
-					childrensArray.add(childrenOneArray);
-					System.out.println("Array Children One: "+Arrays.toString(childrenOneArray));
-					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					if(visitedNodes.containsKey(Arrays.toString(childrenOneArray))) {
+						System.out.println("ESSE NÓ JÁ FOI VISITADO");
+					}else {
+
+						childrensArray.add(childrenOneArray);
+
+						System.out.println("Array Children One: "+Arrays.toString(childrenOneArray));
+						System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					}
 					break;
 				case 1:
 					int[] childrenTwoArray = Arrays.copyOf(puzzle, puzzle.length);
 					childrenTwoArray[zeroPosition] = childrenTwoArray[zeroPosition+3];
 					childrenTwoArray[zeroPosition+3] = 0;
 					
-					childrensArray.add(childrenTwoArray);
-					System.out.println("Array Children Two: "+Arrays.toString(childrenTwoArray));
-					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					if(visitedNodes.containsKey(Arrays.toString(childrenTwoArray))) {
+						System.out.println("ESSE NÓ JÁ FOI VISITADO");
+					}else {
+
+						childrensArray.add(childrenTwoArray);
+						System.out.println("Array Children Two: "+Arrays.toString(childrenTwoArray));
+						System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					}
+					
 					break;
 				case 2:
 					int[] childrenThreeArray = Arrays.copyOf(puzzle, puzzle.length);
 					childrenThreeArray[zeroPosition] = childrenThreeArray[zeroPosition-1];
 					childrenThreeArray[zeroPosition-1]=0;
 					
-					childrensArray.add(childrenThreeArray);
-					System.out.println("Array Children Three: "+Arrays.toString(childrenThreeArray));
-					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					
+					if(visitedNodes.containsKey(Arrays.toString(childrenThreeArray))) {
+						System.out.println("ESSE NÓ JÁ FOI VISITADO");
+					}else {
+
+						childrensArray.add(childrenThreeArray);
+						System.out.println("Array Children Three: "+Arrays.toString(childrenThreeArray));
+						System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					}
+				
 					break;
 					
 				case 3:
@@ -118,9 +134,16 @@ public class PuzzleControl {
 					childrenFourArray[zeroPosition] = childrenFourArray[zeroPosition+1];
 					childrenFourArray[zeroPosition+1]=0;
 					
-					childrensArray.add(childrenFourArray);
-					System.out.println("Array Children Four: "+Arrays.toString(childrenFourArray));
-					System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					
+					if(visitedNodes.containsKey(Arrays.toString(childrenFourArray))) {
+						System.out.println("ESSE NÓ JÁ FOI VISITADO");
+					}else {
+
+						childrensArray.add(childrenFourArray);
+						System.out.println("Array Children Four: "+Arrays.toString(childrenFourArray));
+						System.out.println(" Array Puzzle: "+Arrays.toString(puzzle));
+					}
+				
 					break;
 				}
 				
