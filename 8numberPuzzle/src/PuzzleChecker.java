@@ -21,7 +21,7 @@ public class PuzzleChecker {
 				System.out.println("nó já visitado");
 			}else {
 				visitedNodes.put(Arrays.toString(children),children);
-				System.out.println(visitedNodes);
+				System.out.println("NÓ JÁ VISITADOS: "+visitedNodes);
 				
 			}
 		}

@@ -7,15 +7,16 @@ public class PuzzleControl {
 	
 	
 	public static HashMap<String, int[]> visitedNodes = new HashMap<>();
-
+		public static int zeroPosition = 0;
 	public static int searchForZero(ArrayList<int[]> puzzle) {
-		int zeroPosition = 0;
+		
 		//boolean checkChildren = false;
 		ArrayList<int[]> childrensArray = new ArrayList<>();
 		boolean[] directionsArray = {false, false, false, false};
 		/*up, down, left, right*/
 		
 		for(int[] node : puzzle) {
+		
 		for(int i=0; i<node.length;i++) {
 			if(node[i]==0) {
 				zeroPosition = i;
@@ -65,7 +66,10 @@ public class PuzzleControl {
 			break;
 		}
 		
+	
 		childrensArray.addAll(createChildren(directionsArray, node, zeroPosition));
+		System.out.println("NÓ QUE ESTÁ VISITANDO: "+Arrays.toString(node));
+		System.out.println("FILOS DELE: "+childrensArray);
 		
 	}
 			visitedNodes = PuzzleChecker.checkChildrens(childrensArray);
